@@ -1,4 +1,6 @@
 using Blogify.Api.Data;
+using Blogify.Api.Repositories.Implementation;
+using Blogify.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -20,6 +22,8 @@ builder.Services.AddDbContext<BlogDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogifyConnectinStrings")
 ));
 
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 var app = builder.Build();
 
