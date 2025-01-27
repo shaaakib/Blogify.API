@@ -20,8 +20,8 @@ namespace Blogify.Api.Controllers
             _db = db;
         }
 
-        [HttpGet("/getBlogs")]
-        public async Task<IActionResult> getBlogs()
+        [HttpGet("/GetBlogs")]
+        public async Task<IActionResult> GetBlogs()
         {
 
             // data query
@@ -59,8 +59,8 @@ namespace Blogify.Api.Controllers
             return Ok(blogs);
         }
 
-        [HttpGet("getBlog/{id}")]
-        public async Task<IActionResult> getBlog(int id)
+        [HttpGet("GetBlog/{id}")]
+        public async Task<IActionResult> GetBlog(int id)
         {
             var blog = await _db.Blogs
                        .Include(b => b.Posts)
@@ -85,8 +85,8 @@ namespace Blogify.Api.Controllers
             return Ok(blogDtos);
         }
 
-        [HttpPost("createBlog")]
-        public async Task<IActionResult> createBlog([FromBody]BlogDto blogDto)
+        [HttpPost("CreateBlog")]
+        public async Task<IActionResult> CreateBlog([FromBody]BlogDto blogDto)
         {
             var blog = new Blog
             {
@@ -106,8 +106,8 @@ namespace Blogify.Api.Controllers
            return Ok(blog);
         }
 
-        [HttpPut("updateBlog/{id}")]
-        public async Task<IActionResult> updateBlog([FromBody]BlogDto blogDto, int id)
+        [HttpPut("UpdateBlog/{id}")]
+        public async Task<IActionResult> UpdateBlog([FromBody]BlogDto blogDto, int id)
         {
             var blog = await _db.Blogs.Include(b => b.Posts).FirstOrDefaultAsync(b => b.BlogId == id);
 
@@ -133,8 +133,8 @@ namespace Blogify.Api.Controllers
             return Ok(new {Message = "Blog updated successfully!" });
         }
 
-        [HttpDelete("deleteBlog/{id}")]
-        public async Task<IActionResult> deleteBlog(int id)
+        [HttpDelete("DeleteBlog/{id}")]
+        public async Task<IActionResult> DeleteBlog(int id)
         {
             var blog = await _db.Blogs.Include(b => b.Posts).FirstOrDefaultAsync(b => b.BlogId == id);
 
