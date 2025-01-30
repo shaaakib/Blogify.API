@@ -1,8 +1,12 @@
 ﻿using Blogify.Api.Models.Domain;
 using Blogify.Api.Models.DTO;
 using Blogify.Api.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize(Roles = "Admin")]
+[Route("api/[controller]")]
+[ApiController]
 public class BlogController : ControllerBase
 {
     private readonly IBlogRepository _blogRepository;

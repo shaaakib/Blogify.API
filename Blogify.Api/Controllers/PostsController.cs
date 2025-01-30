@@ -5,9 +5,11 @@ using Blogify.Api.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
 using Blogify.Api.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blogify.Api.Controllers
 {
+    [Authorize(Roles = "User")]
     [Route("api/[controller]")]
     [ApiController]
     public class PostsController : ControllerBase
@@ -19,6 +21,7 @@ namespace Blogify.Api.Controllers
             _postRepository = postRepository;
         }
 
+        
         [HttpGet("GetPosts")]
         public async Task<IActionResult> GetPosts()
         {
